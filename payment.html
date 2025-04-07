@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+  <title>Bengkel Motor Restu Alam</title>
+  <style>
+    body {
+      background-color: darkgray;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="payment.html">Restu Alam</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active"><a class="nav-link" href="index.html">Beranda</a></li>
+        <li class="nav-item"><a class="nav-link" href="layanan.html">Layanan</a></li>
+        <li class="nav-item"><a class="nav-link" href="kontak.html">Kontak</a></li>
+        <li class="nav-item"><a class="nav-link" href="payment.html">Payment</a></li>
+        <li class="nav-item"><a class="nav-link" href="antrian.html">Antrian</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Bagian daftar metode -->
+  <div id="payment" class="content-section">
+    <h4>Metode Pembayaran</h4>
+    <ul class="list-group">
+      <li class="list-group-item">Tunai</li>
+      <li class="list-group-item">Transfer Bank</li>
+      <li class="list-group-item">Dompet Digital</li>
+    </ul>
+  </div>
+
+  <!-- Formulir pemilihan metode -->
+  <div id="paymentInfo" class="content-section">
+    <h4>Metode Pembayaran</h4>
+    <div id="paymentFormContainer">
+      <form id="paymentForm">
+        <label>Pilih Metode Pembayaran:</label>
+        <select id="paymentMethod">
+          <option value="">--Pilih--</option>
+          <option value="bank_transfer">Transfer Bank</option>
+          <option value="digital_wallet">Dompet Digital</option>
+        </select>
+
+        <div id="bankOptions" style="display: none;">
+          <label for="bankName">Pilih Bank:</label>
+          <select id="bankName" class="form-control">
+            <option value="">--Pilih Bank--</option>
+            <option value="bni">BNI</option>
+            <option value="mandiri">Mandiri</option>
+            <option value="bca">BCA</option>
+            <option value="bri">BRI</option>
+          </select>
+          <p>Nomor rekening untuk Bank BNI: 0123456789</p>
+          <p>Nomor rekening untuk Bank Mandiri: 0987654321</p>
+          <p>Nomor rekening untuk Bank BCA: 123456789</p>
+          <p>Nomor rekening untuk Bank BRI: 12345678910</p>
+          <label>Nomor Rekening Bengkel Restu Alam:</label>
+          <input type="text" class="form-control" />
+          <label>Nomor Rekening Anda:</label>
+          <input type="text" class="form-control" />
+        </div>
+
+        <div id="walletOptions" style="display: none;">
+          <label for="walletName">Pilih Dompet Digital:</label>
+          <select id="walletName" class="form-control">
+            <option value="">--Pilih Dompet Digital--</option>
+            <option value="dana">Dana</option>
+            <option value="ovo">OVO</option>
+            <option value="gopay">GoPay</option>
+            <option value="shopeepay">Shopee Pay</option>
+          </select>
+          <p>Nomor untuk Dompet Digital Bengkel Restu Alam: 085747314181</p>
+          <input type="text" class="form-control" />
+          <label>Nomor Dompet Digital Anda:</label>
+          <input type="text" class="form-control" />
+        </div>
+
+        <div id="paymentDetails" style="display: none;">
+          <div class="form-group">
+            <label for="amount">Jumlah Pembayaran:</label>
+            <input type="number" id="amount" class="form-control" required />
+          </div>
+          <button type="submit" class="btn btn-primary">Kirim</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- DILUAR FORM -->
+  <div id="thankYouMessage" style="display: none; background-color: #d4edda; padding: 10px; margin-top: 20px;">
+    <strong>Terima kasih telah merawat motor anda di bengkel kami, jangan lupa datang kembali.</strong>
+  </div>
+
+  <script>
+    const formContainer = document.getElementById("paymentFormContainer");
+    const thankYou = document.getElementById("thankYouMessage");
+    const form = document.getElementById("paymentForm");
+    const paymentDetails = document.getElementById("paymentDetails");
+
+    document.getElementById("paymentMethod").addEventListener("change", function () {
+      const bankOptions = document.getElementById("bankOptions");
+      const walletOptions = document.getElementById("walletOptions");
+
+      if (this.value === "bank_transfer") {
+        bankOptions.style.display = "block";
+        walletOptions.style.display = "none";
+        paymentDetails.style.display = "block";
+      } else if (this.value === "digital_wallet") {
+        walletOptions.style.display = "block";
+        bankOptions.style.display = "none";
+        paymentDetails.style.display = "block";
+      } else {
+        bankOptions.style.display = "none";
+        walletOptions.style.display = "none";
+        paymentDetails.style.display = "none";
+      }
+    });
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      formContainer.style.display = "none";
+      document.getElementById("bankOptions").style.display = "none";
+      document.getElementById("walletOptions").style.display = "none";
+      paymentDetails.style.display = "none";
+      thankYou.style.display = "block";
+      form.reset();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Bengkel Motor Restu Alam</title>
+
+    <style>
+    body {
+        background-color: darkgray;
+    }
+    </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="antrian.html">Restu Alam</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html" onclick="showSection('home')">Beranda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="layanan.html" onclick="showSection('services')">Layanan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="kontak.html" onclick="showSection('contact')">Kontak</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="payment.html" onclick="showSection('payment')">Payment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="antrian.html" onclick="showSection('antrian')">Antrian</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+    <h2 class="text-center">Antrian Motor</h2>
+    <form id="queue-form" class="mt-4">
+        <div class="form-group">
+            <label for="motorName">Nama Pemilik Motor:</label>
+            <input type="text" class="form-control" id="motorName" required>
+        </div>
+        <div class="form-group">
+            <label for="motorType">Tipe Motor:</label>
+            <p>Contoh: Matic (Mio Sporty 2010)</p>
+            <input type="text" class="form-control" id="motorType" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Tambahkan ke Antrian</button>
+    </form>
+    
+    <h3 class="mt-5">Antrian Saat Ini:</h3>
+    <ul id="queue-list" class="list-group mt-3"></ul>
+</div>
+    
+</body>
+<script>
+    document.getElementById('queue-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const motorName = document.getElementById('motorName').value;
+        const motorType = document.getElementById('motorType').value;
+        const queueList = document.getElementById('queue-list');
+        const newItem = document.createElement('li');
+        newItem.classList.add('list-group-item');
+        newItem.textContent = `${motorName} - ${motorType}`;
+        queueList.appendChild(newItem);
+        document.getElementById('queue-form').reset();
+    });
+
+    function showSection(sectionId) {
+        const sections = document.querySelectorAll('.content-section');
+        sections.forEach(section => {
+            section.style.display = 'none';
+        });
+
+        document.getElementById(sectionId).style.display = 'block';
+    }
+</script>
+</html>

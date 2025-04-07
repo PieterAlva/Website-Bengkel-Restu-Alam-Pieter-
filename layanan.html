@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Bengkel Motor Restu Alam</title>
+    <style>
+        body {
+            background-color: darkgray;
+        }
+        </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="layanan.html">Restu Alam</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html" onclick="showSection('home')">Beranda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="layanan.html" onclick="showSection('services')">Layanan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="kontak.html" onclick="showSection('contact')">Kontak</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="payment.html" onclick="showSection('payment')">Payment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="antrian.html" onclick="showSection('antrian')">Antrian</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div id="services" class="content-section">
+        <h2>Layanan Kami</h2>
+        <ul class="list-group">
+            <li class="list-group-item">Servis Rutin</li>
+            <li class="list-group-item">Perbaikan Mesin</li>
+            <li class="list-group-item">Penggantian Oli</li>
+            <li class="list-group-item">Pemasangan Aksesoris</li>
+            <li class="list-group-item">Upgrade CC</li>
+            <li class="list-group-item">Tambal BAN</li>
+            <li class="list-group-item">Isi Angin BAN</li>
+            <li class="list-group-item">POM MINI</li>
+        </ul>
+        <h3 class="text-center">Tambah Layanan Baru</h3>
+        <form id="serviceForm">
+            <div class="form-group">
+                <label for="serviceName">Nama Layanan</label>
+                <input type="text" class="form-control" id="serviceName" placeholder="Masukkan nama layanan" required>
+                <label for="userName">Masukkan Nama Anda</label>
+                <input type="text" class="form-control" id="userName" placeholder="Masukkan nama anda" required>                
+            </div>
+            <button type="submit" class="btn btn-primary">Tambah Layanan</button>
+        </form>
+
+        <div class="mt-4" id="addedServices">
+            <h4 class="text-center">Layanan yang Ditambahkan:</h4>
+            <ul class="list-group" id="serviceList"></ul>
+        </div>
+    </div>
+</body>
+<script>
+    const form = document.getElementById("serviceForm");
+    const serviceList = document.getElementById("serviceList");
+  
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+  
+      const serviceName = document.getElementById("serviceName").value;
+      const userName = document.getElementById("userName").value;
+  
+      const listItem = document.createElement("li");
+      listItem.className = "list-group-item";
+      listItem.textContent = `${serviceName} (Ditambahkan oleh: ${userName})`;
+  
+      serviceList.appendChild(listItem);
+  
+      // Reset form
+      form.reset();
+    });
+  </script>
+  
+</html>
